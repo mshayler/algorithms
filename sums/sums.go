@@ -62,3 +62,59 @@ func threeSum(nums []int) [][]int {
     
     return uniqueTriplets
 }
+
+
+// two pointers left and right
+func threeSumBetter(nums []int) [][]int {
+    
+    var uniqueTriplets [][]int
+      
+    m := make(map[[3]int]bool)
+
+    sorted := nums
+    sort.Ints(sorted)
+    
+    // loop over the sorted array from beginning
+    for i := 0; i < len(sorted); i++ {
+        
+        if i != 0 && sorted[i] == sorted[i-1] {
+            continue
+        }
+        
+        left := i + 1
+        right := len(sorted) - 1
+        
+        // while loop, check all values
+        for left < right {
+
+            // check our threesum
+            sum := sorted[i] + sorted[left] + sorted[right]
+            
+            if sum == 0 {
+                
+                key := [3]int{sorted[i], sorted[left], sorted[right]}             
+                if _, ok := m[key]; !ok {
+                    val := []int{sorted[i], sorted[left], sorted[right]}
+                    uniqueTriplets = append(uniqueTriplets, val)
+                    m[key] = true
+                }
+                
+
+                left++
+                right--
+                
+                
+            } else if sum < 0 {
+                left++
+            } else if sum > 0 {
+                right--
+            } 
+                
+            
+        }
+        
+    }
+    return uniqueTriplets
+
+} 
+    

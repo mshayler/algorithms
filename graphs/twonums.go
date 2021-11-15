@@ -1,3 +1,17 @@
+/**
+* Definition for singly-linked list.
+* type ListNode struct {
+*     Val int
+*     Next *ListNode
+* }
+*/
+// Leetcode 2
+// Rather than popping or storing, this approach uses basic math principles
+// We create the start of a linked list with an empty array
+// Then create a Next node for each loop, that adds the values from the other two if there is one, OR the value of the carryover from the last add
+// return the list, with the one after.
+
+
 func addTwoNumbers(l1 *ListNode, l2 *ListNode) *ListNode {
     head := &ListNode{}
     
